@@ -16,11 +16,12 @@ public class Routers {
     public RouterFunction<ServerResponse> taskRouter(TaskHandler taskHandler) {
         return RouterFunctions.route().path("/task", builder1 -> builder1
                         .nest(accept(MediaType.APPLICATION_JSON), builder2 -> builder2
-                                .GET(taskHandler::getTasks)
-                                .GET("/{id:[%d]+}", taskHandler::getTasks)
-                                .POST(taskHandler::addTask)
-                                .DELETE("/{id:[%d]+}", taskHandler::deleteTaskById)
-                                .PATCH("/{id:[%d]+}", taskHandler::updateTask)))
+                                        .GET(taskHandler::getTasks)
+                                        //.GET("/{id:[%d]+}", taskHandler::getTasks)
+                                        .POST(taskHandler::addTask)
+                                //.DELETE("/{id:[%d]+}", taskHandler::deleteTaskById)
+                                //.PATCH("/{id:[%d]+}", taskHandler::updateTask)
+                        ))
                 .build();
     }
 }
