@@ -18,7 +18,7 @@ public class TaskService {
     private TaskRepository taskRepository;
 
     public Flux<Task> addTask(Task task) {
-        task.setId(id++);
+        //task.setId(id++);
         return taskRepository.save(task).flux();
     }
 

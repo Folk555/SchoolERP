@@ -2,10 +2,10 @@ package com.turulin.SchoolERP.models;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.relational.core.mapping.Table;
 
 @Data
-@Document
+@Table
 public class Task {
     @Id
     private Long id;

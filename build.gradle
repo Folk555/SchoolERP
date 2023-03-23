@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-	//Временно закоментировал зависимости которые пока не юзаю. Некоторые требуют файлов настройки .properties
+	//Временно закомментировал зависимости которые пока не юзаю. Некоторые требуют файлов настройки .properties
 	//поэтому падают с ошибкой. Например все что связано с БД, так как не выбран драйвер подключения к БД.
 
 	//implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -27,15 +27,18 @@ dependencies {
 	//implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	compileOnly 'org.projectlombok:lombok:1.18.26'
-	//runtimeOnly 'org.postgresql:postgresql:42.5.4'
 	annotationProcessor 'org.projectlombok:lombok:1.18.26'
+	//runtimeOnly 'org.postgresql:postgresql:42.5.4'
+
+	implementation 'org.springframework.data:spring-data-r2dbc:3.0.4'
+	implementation 'io.r2dbc:r2dbc-postgresql:latest'
+
+
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test:3.5.3'
 	//testImplementation 'org.springframework.security:spring-security-test'
-	//Для MongoDB
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb-reactive', version: '3.0.4'
-	//Для тестов MongoDB
-	testImplementation group: 'de.flapdoodle.embed', name: 'de.flapdoodle.embed.mongo', version: '4.6.2'
+
 }
 
 tasks.named('test') {
