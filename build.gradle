@@ -1,7 +1,7 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.0.4'
+	id 'org.springframework.boot' version '3.0.5'
 	id 'io.spring.dependency-management' version '1.1.0'
+	id 'java'
 }
 
 group = 'com.turulin'
@@ -31,7 +31,8 @@ dependencies {
 	//runtimeOnly 'org.postgresql:postgresql:42.5.4'
 
 	implementation 'org.springframework.data:spring-data-r2dbc:3.0.4'
-	implementation 'io.r2dbc:r2dbc-postgresql:latest'
+	implementation 'io.r2dbc:r2dbc-postgresql:0.8.13.RELEASE'
+
 
 
 
