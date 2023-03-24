@@ -8,6 +8,10 @@ services:
       POSTGRES_DB: "school"
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "rootroot"
+      PGDATA: /var/lib/postgresql/data/
+    volumes:
+      - ./db_init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./data:/var/lib/postgresql/data/:rw
     ports:
       - "5432:5432"
     networks:
@@ -23,7 +27,7 @@ services:
     ports:
       - "5050:80"
     volumes:
-      - ./pgadmin:/var/lib/pgadmin
+      - ./pgadmin:/var/lib/pgadmin  
     networks:
       - postgres
 

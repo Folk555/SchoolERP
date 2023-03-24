@@ -9,5 +9,7 @@ import org.springframework.data.relational.core.mapping.Table;
 public class Task {
     @Id
     private Long id;
+    private String author;
+    private String room;
     private String description;
 }
