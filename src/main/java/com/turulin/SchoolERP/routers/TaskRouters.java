@@ -11,7 +11,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import static org.springframework.web.reactive.function.server.RequestPredicates.*;
 
 @Configuration
-public class Routers {
+public class TaskRouters {
     @Bean
     public RouterFunction<ServerResponse> taskRouter(TaskHandler taskHandler) {
         return RouterFunctions.route().path("/task", builder1 -> builder1

@@ -8,6 +8,8 @@ import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
+import java.net.URI;
+
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
@@ -24,8 +26,12 @@ public class TaskHandler {
 
     public Mono<ServerResponse> addTask(ServerRequest serverRequest) {
         Mono<Task> taskMono = serverRequest.bodyToMono(Task.class);
-        return taskMono.flatMap(task -> ServerResponse.status(CREATED).contentType(APPLICATION_JSON)
-                .body(taskRepository.save(task), Task.class));
+        return taskMono.flatMap(task -> {
+            Mono<Task> savedTask = taskRepository.save(task);
+            return savedTask.flatMap(task1 -> ServerResponse.created(URI.create(task1.getId().toString()))
+                    .contentType(APPLICATION_JSON)
+                    .bodyValue(task1));
+        });
     }
 
     public Mono<ServerResponse> getTaskById(ServerRequest serverRequest) {
@@ -35,8 +41,7 @@ public class TaskHandler {
 
     public Mono<ServerResponse> updateTask(ServerRequest serverRequest) {
         Mono<Task> updatedTask = serverRequest.bodyToMono(Task.class);
-        return ServerResponse.ok().body(taskRepository.saveAll(updatedTask), Task.class);
-
+        return updatedTask.flatMap(task -> ServerResponse.ok().body(taskRepository.save(task), Task.class));
     }
 
     public Mono<ServerResponse> deleteTaskById(ServerRequest serverRequest) {
