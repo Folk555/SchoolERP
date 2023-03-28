@@ -1,0 +1,12 @@
+spring:
+  r2dbc:
+    url: "r2dbc:postgresql://localhost:5432/school"
+    username: "postgres"
+    password: "rootroot"
+logging:
+  level:
+    io.r2dbc.postgresql.QUERY: DEBUG # for queries
+    io.r2dbc.postgresql.PARAM: DEBUG # for parameters
+    org:
+      springframework:
+        security: DEBUG
